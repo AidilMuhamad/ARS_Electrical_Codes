@@ -12,6 +12,6 @@ void loop()
     Serial.println("Lampu Hidup");
     delay(5000);
     digitalWrite(relay, LOW);
-    Serial.println("Lampu Hidup");
+    Serial.println("Lampu Mati");
     delay(2000);
 }
