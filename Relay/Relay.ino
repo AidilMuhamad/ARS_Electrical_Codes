@@ -9,7 +9,9 @@ void setup()
 void loop()
 {
     digitalWrite(relay, HIGH);
+    Serial.println("Lampu Hidup");
     delay(5000);
     digitalWrite(relay, LOW);
+    Serial.println("Lampu Hidup");
     delay(2000);
 }
