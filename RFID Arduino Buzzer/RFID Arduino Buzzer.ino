@@ -59,9 +59,6 @@ void loop() {
     delay(1000);
     digitalWrite(LED_PIN1, LOW);
     digitalWrite(LED_PIN2, LOW);
-    noTone(buzzer);
-    delay(1000);
-
     return;
   }
   else {
@@ -73,6 +70,8 @@ void loop() {
     digitalWrite(LED_PIN2, LOW);
     digitalWrite(LED_PIN1, LOW);
     tone(buzzer,1000);
+    delay(1000);
+    noTone(buzzer);
     delay(1000);
     return;
   }
