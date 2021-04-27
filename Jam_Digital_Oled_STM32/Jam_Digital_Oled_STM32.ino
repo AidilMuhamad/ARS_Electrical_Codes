@@ -46,7 +46,12 @@ void loop() {
     {
         detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
-    else if(StateSetting == 1)
+    buttonsetting()
+
+}
+
+void buttonsetting(){
+    if(StateSetting == 1)
     {
         x++;
     }
@@ -58,15 +63,11 @@ void loop() {
         buttonjam(); //Memanggil variabel fungsi buttonjam
     }
     else{
-        buttonmenit(); // Memanggil variabel fungsi buttonmenit
-        buttonjam(); //Memanggil variabel fungsi buttonjam
         waktu(); // Memanggil variabel fungsi waktu 
     }
 
     if(x > 2) x = 0;
-
 }
-
 
 void buttonjam(){
     if(StateJam == 1 || menit == 60) {
@@ -89,6 +90,8 @@ void buttonmenit(){
 }
 
 void waktu(){
+    buttonmenit();
+    buttonjam();
     char detik_str[3], menit_str[3], jam_str[3];
     strcpy(detik_str, u8x8_u8toa(detik, 2));    /* mengkonversi m untuk menjadi string dengan 2 digit */
     strcpy(menit_str, u8x8_u8toa(menit, 2)); 
