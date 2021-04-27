@@ -46,7 +46,7 @@ void loop() {
     {
         detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
-    buttonsetting()
+    buttonsetting();
 
 }
 
