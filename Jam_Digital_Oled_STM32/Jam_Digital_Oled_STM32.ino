@@ -43,6 +43,10 @@ void loop() {
     {
         detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
+    else if(StateSetting == 1)
+    {
+        x++;
+    }
 
     if(x == 2) {
         buttonmenit(); // Memanggil variabel fungsi buttonmenit
