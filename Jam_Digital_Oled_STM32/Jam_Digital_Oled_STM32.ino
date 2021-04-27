@@ -31,23 +31,25 @@ void setup() {
 }
 
 void loop() {
-    StateMenit = digitalRead(ButtonMenit);
-    StateJam = digitalRead(ButtonJam);
-    StateSetting = digitalRead(ButtonSetting);
-    time = millis();
+    StateMenit = digitalRead(ButtonMenit); //Menjadikan variabel StateMenit sebagai penampung nilai ButtonMenit 
+    StateJam = digitalRead(ButtonJam); //Menjadikan variabel StateJam sebagai penampung nilai ButtonJam
+    StateSetting = digitalRead(ButtonSetting); //Menjadikan variabel StateSetting sebagai penampung nilai ButtonSetting
+    time = millis(); //Menjadikan variabel time sebagai millis
     if((time - preview) >= interval){
         preview = time;
         detik++;
     }
 
     if(x == 2) {
-        buttonmenit();
+        buttonmenit(); // Memanggil variabel fungsi buttonmenit
     }
     else if(x == 1) {
-        buttonjam();
+        buttonjam(); //Memanggil variabel fungsi buttonjam
     }
     else{
-        waktu();
+        buttonmenit(); // Memanggil variabel fungsi buttonmenit
+        buttonjam(); //Memanggil variabel fungsi buttonjam
+        waktu(); // Memanggil variabel fungsi waktu 
     }
 
     if(x > 2) x = 0;
@@ -57,27 +59,27 @@ void loop() {
 
 void buttonjam(){
     if(StateJam == 1) {
-        jam++;
+        jam++; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
     }
     else if(menit == 60) 
     {
-        menit = 0;
-        jam++;
+        menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
+        jam++; //Jika variabel menit = 60, maka jam akan bertambah 1
     }
     else if(jam < 23) 
     {
-        jam = 0;
+        jam = 0; //Jika variabel jam < 23, maka jam akan menjadi 0
     }
 }
 
 void buttonmenit(){
     if(StateMenit == 1) {
-        menit++;
+        menit++; //Jika Variabel StateMenit memiliki niali 1 , maka nilai variabel menit bertambah 1
     }
     else if(detik == 60) 
     {
-        menit++;
-        detik = 0;
+        menit++; //Jika variabel detik = 60, maka nilai variabel menit bertambah 1
+        detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
 }
 
