@@ -22,7 +22,10 @@ int menit = 0;
 int jam = 0;
 
 //Deklarsi Variabel
-byte StateMenit, StateJam, StateSetting, x;
+byte StateMenit = 0;
+byte StateJam = 0;
+byte StateSetting = 0;
+byte x = 0;
 
 void setup() {
     Serial.begin(115200); //Mengkoneksikan Serial Ke Serial Moitor Laptop Pada Baud 115200
