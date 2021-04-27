@@ -39,6 +39,10 @@ void loop() {
         preview = time;
         detik++;
     }
+    else if(detik == 60) 
+    {
+        detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
+    }
 
     if(x == 2) {
         buttonmenit(); // Memanggil variabel fungsi buttonmenit
@@ -58,28 +62,22 @@ void loop() {
 
 
 void buttonjam(){
-    if(StateJam == 1) {
+    if(StateJam == 1 || menit == 60) {
         jam++; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
     }
-    else if(menit == 60) 
-    {
-        menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
-        jam++; //Jika variabel menit = 60, maka jam akan bertambah 1
-    }
-    else if(jam < 23) 
+    else if(jam == 24) 
     {
         jam = 0; //Jika variabel jam < 23, maka jam akan menjadi 0
     }
 }
 
 void buttonmenit(){
-    if(StateMenit == 1) {
+    if(StateMenit == 1 || detik == 60) {
         menit++; //Jika Variabel StateMenit memiliki niali 1 , maka nilai variabel menit bertambah 1
     }
-    else if(detik == 60) 
+    else if(menit == 60) 
     {
-        menit++; //Jika variabel detik = 60, maka nilai variabel menit bertambah 1
-        detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
+        menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
     }
 }
 
