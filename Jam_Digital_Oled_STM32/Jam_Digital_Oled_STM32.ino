@@ -16,7 +16,7 @@ U8G2_SH1106_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, PB6,
 //Inialisasikan Variabel Ke Nilai
 unsigned long time = 0;
 unsigned long preview = 0;
-unsigned long interval = 990;
+unsigned long interval = 985;
 int detik = 0;
 int menit = 0;
 int jam = 0;
