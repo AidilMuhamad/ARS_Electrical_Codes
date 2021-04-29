@@ -46,6 +46,8 @@ void loop() {
     {
         detik = 00; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
+    buttonmenit();
+    buttonjam();
     buttonsetting();
 
 }
@@ -90,8 +92,6 @@ void buttonjam(){
 }
 
 void waktu(){
-    buttonmenit();
-    buttonjam();
     char detik_str[3], menit_str[3], jam_str[3];
     strcpy(detik_str, u8x8_u8toa(detik, 2));    /* mengkonversi m untuk menjadi string dengan 2 digit */
     strcpy(menit_str, u8x8_u8toa(menit, 2)); 
