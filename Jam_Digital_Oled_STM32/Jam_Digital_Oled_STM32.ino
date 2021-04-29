@@ -11,15 +11,15 @@
 #define ButtonJam PB4
 #define ButtonSetting PB5
 
-U8G2_SH1106_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, PB6, PB7);
+U8G2_SH1106_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, /*SCL*/ PB6, /*SDA*/PB7);
 
 //Inialisasikan Variabel Ke Nilai
 unsigned long time = 0;
 unsigned long preview = 0;
-unsigned long interval = 985;
-int detik = 0;
-int menit = 0;
-int jam = 0;
+unsigned long interval = 983.38;
+int detik = 00;
+int menit = 00;
+int jam = 00;
 
 //Deklarsi Variabel
 byte StateMenit = 0;
@@ -44,7 +44,7 @@ void loop() {
     }
     else if(detik == 60) 
     {
-        detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
+        detik = 00; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
     buttonsetting();
 
@@ -66,7 +66,7 @@ void buttonsetting(){
         waktu(); // Memanggil variabel fungsi waktu 
     }
 
-    if(x > 2) x = 0;
+    if(x >= 2) x = 0;
 }
 
 void buttonmenit(){
@@ -75,7 +75,7 @@ void buttonmenit(){
     }
     else if(menit == 60) 
     {
-        menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
+        menit = 00; //Jika variabel menit = 60 maka menit akan menjadi 0
     }
 }
 
@@ -83,9 +83,9 @@ void buttonjam(){
     if(StateJam == 1 || menit == 60) {
         jam++; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
     }
-    else if(jam < 23) 
+    else if(jam == 23) 
     {
-        jam = 0; //Jika variabel jam < 23, maka jam akan menjadi 0
+        jam = 00; //Jika variabel jam < 23, maka jam akan menjadi 0
     }
 }
 
@@ -99,11 +99,11 @@ void waktu(){
     u8g2.firstPage();
     for(int i = 0; i < 10; i++){
         u8g2.setFont(u8g2_font_logisoso24_tn);
-        u8g2.drawStr(10,53,jam_str);
-        u8g2.drawStr(40,53,":");
-        u8g2.drawStr(50,53,menit_str);
-        u8g2.drawStr(80,53,":");
-        u8g2.drawStr(90,53,detik_str); 
+        u8g2.drawStr(10,46,jam_str);
+        u8g2.drawStr(41,45,":");
+        u8g2.drawStr(50,46,menit_str);
+        u8g2.drawStr(81,45,":");
+        u8g2.drawStr(90,46,detik_str); 
         u8g2.nextPage();
     }
     Serial.println("=========="); 
