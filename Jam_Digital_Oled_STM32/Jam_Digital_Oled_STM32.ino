@@ -16,7 +16,7 @@ U8G2_SH1106_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, PB6,
 //Inialisasikan Variabel Ke Nilai
 unsigned long time = 0;
 unsigned long preview = 0;
-unsigned long interval = 50;
+unsigned long interval = 990;
 int detik = 0;
 int menit = 0;
 int jam = 0;
@@ -69,16 +69,6 @@ void buttonsetting(){
     if(x > 2) x = 0;
 }
 
-void buttonjam(){
-    if(StateJam == 1 || menit == 60) {
-        jam++; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
-    }
-    else if(jam == 24) 
-    {
-        jam = 0; //Jika variabel jam < 23, maka jam akan menjadi 0
-    }
-}
-
 void buttonmenit(){
     if(StateMenit == 1 || detik == 60) {
         menit++; //Jika Variabel StateMenit memiliki niali 1 , maka nilai variabel menit bertambah 1
@@ -86,6 +76,16 @@ void buttonmenit(){
     else if(menit == 60) 
     {
         menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
+    }
+}
+
+void buttonjam(){
+    if(StateJam == 1 || menit == 60) {
+        jam++; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
+    }
+    else if(jam < 23) 
+    {
+        jam = 0; //Jika variabel jam < 23, maka jam akan menjadi 0
     }
 }
 
@@ -97,13 +97,15 @@ void waktu(){
     strcpy(menit_str, u8x8_u8toa(menit, 2)); 
     strcpy(jam_str, u8x8_u8toa(jam, 2)); 
     u8g2.firstPage();
-    u8g2.setFont(u8g2_font_logisoso24_tn);
-    u8g2.drawStr(10,53,jam_str);
-    u8g2.drawStr(40,53,":");
-    u8g2.drawStr(50,53,menit_str);
-    u8g2.drawStr(80,53,":");
-    u8g2.drawStr(90,53,detik_str); 
-    u8g2.nextPage();
+    for(int i = 0; i < 10; i++){
+        u8g2.setFont(u8g2_font_logisoso24_tn);
+        u8g2.drawStr(10,53,jam_str);
+        u8g2.drawStr(40,53,":");
+        u8g2.drawStr(50,53,menit_str);
+        u8g2.drawStr(80,53,":");
+        u8g2.drawStr(90,53,detik_str); 
+        u8g2.nextPage();
+    }
     Serial.println("=========="); 
     Serial.println(String(jam_str) + ":" + String(menit_str) + ":" + String(detik_str));
     Serial.println("==========");     
