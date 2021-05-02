@@ -17,9 +17,9 @@ U8G2_SH1106_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, /*SC
 unsigned long time = 0;
 unsigned long preview = 0;
 unsigned long interval = 983.38;
-int detik = 00;
-int menit = 00;
-int jam = 00;
+int detik = 0;
+int menit = 0;
+int jam = 0;
 
 //Deklarsi Variabel
 byte StateMenit = 0;
@@ -34,60 +34,65 @@ void setup() {
 }
 
 void loop() {
-    StateMenit = digitalRead(ButtonMenit); //Menjadikan variabel StateMenit sebagai penampung nilai ButtonMenit 
-    StateJam = digitalRead(ButtonJam); //Menjadikan variabel StateJam sebagai penampung nilai ButtonJam
-    StateSetting = digitalRead(ButtonSetting); //Menjadikan variabel StateSetting sebagai penampung nilai ButtonSetting
     time = millis(); //Menjadikan variabel time sebagai millis
     if((time - preview) >= interval){
         preview = time;
         detik++;
     }
-    else if(detik == 60) 
+    else if(detik >= 60) 
     {
-        detik = 00; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
+        detik = 0; //Jika variabel detik = 60, maka nilai variabel akan menjadi  0
     }
-    buttonmenit();
     buttonjam();
     buttonsetting();
 
 }
 
 void buttonsetting(){
-    if(StateSetting == 1)
+    StateSetting = digitalRead(ButtonSetting); //Menjadikan variabel StateSetting sebagai penampung nilai ButtonSetting
+    if(StateSetting == 0)
     {
         x++;
     }
 
-    if(x == 2) {
-        buttonmenit(); // Memanggil variabel fungsi buttonmenit
-    }
-    else if(x == 1) {
-        buttonjam(); //Memanggil variabel fungsi buttonjam
-    }
-    else{
-        waktu(); // Memanggil variabel fungsi waktu 
+    if(x > 2) {
+        x = 0;
     }
 
-    if(x >= 2) x = 0;
+    if(x == 1) {
+        buttonjam(); //Memanggil variabel fungsi buttonjam
+    }
+
+    else if(x == 2) {
+        buttonmenit(); // Memanggil variabel fungsi buttonmenit
+    }
+    
+    waktu(); // Memanggil variabel fungsi waktu 
+
 }
 
 void buttonmenit(){
-    if(StateMenit == 1 || detik == 60) {
-        menit++; //Jika Variabel StateMenit memiliki niali 1 , maka nilai variabel menit bertambah 1
+    StateMenit = digitalRead(ButtonMenit); //Menjadikan variabel StateMenit sebagai penampung nilai ButtonMenit 
+    if(StateMenit == 0 || detik == 60) {
+        menit+=1; //Jika Variabel StateMenit memiliki niali 1 , maka nilai variabel menit bertambah 1
     }
-    else if(menit == 60) 
+
+    if(menit > 60) 
     {
-        menit = 00; //Jika variabel menit = 60 maka menit akan menjadi 0
+        menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
     }
 }
 
 void buttonjam(){
-    if(StateJam == 1 || menit == 60) {
-        jam++; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
+    buttonmenit();
+    StateJam = digitalRead(ButtonJam); //Menjadikan variabel StateJam sebagai penampung nilai ButtonJam
+    if(StateJam == 0 || menit == 60) {
+        jam+=1; //Jika variabel StateJam mempunyai nilai 1, maka nilai variabel jam akan bertambah 1
     }
-    else if(jam == 23) 
+
+    if(jam >= 24) 
     {
-        jam = 00; //Jika variabel jam < 23, maka jam akan menjadi 0
+        jam = 0; //Jika variabel jam > 23, maka jam akan menjadi 0
     }
 }
 
