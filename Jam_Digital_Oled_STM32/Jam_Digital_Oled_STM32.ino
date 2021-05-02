@@ -77,7 +77,7 @@ void buttonmenit(){
         menit+=1; //Jika Variabel StateMenit memiliki niali 1 , maka nilai variabel menit bertambah 1
     }
 
-    if(menit > 60) 
+    if(menit >= 60) 
     {
         menit = 0; //Jika variabel menit = 60 maka menit akan menjadi 0
     }
