@@ -1,10 +1,3 @@
-// Program to demonstrate the MD_Parola library
-//
-// Simplest program that does something useful - Hello World!
-//
-// MD_MAX72XX library can be found at https://github.com/MajicDesigns/MD_MAX72XX
-//
-
 #include <MD_Parola.h>
 #include <MD_MAX72xx.h>
 #include <SPI.h>
