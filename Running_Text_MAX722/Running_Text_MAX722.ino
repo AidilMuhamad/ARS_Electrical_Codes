@@ -26,5 +26,21 @@ void loop(void)
 {
   if(myDisplay.displayAnimate()){
     myDisplay.displayReset();
+    myDisplay.setTextAlignment(PA_CENTER);
+    myDisplay.print("Center");
+    delay(1000);
+    myDisplay.setTextAlignment(PA_LEFT);
+    myDisplay.print("Left");
+    delay(1000);
+    myDisplay.setTextAlignment(PA_RIGHT);
+    myDisplay.print("Right");
+    delay(1000);
+    myDisplay.setTextAlignment(PA_CENTER);
+    myDisplay.setInvert(true);
+    myDisplay.print("Invert");
+    delay(1000);
+    myDisplay.setInvert(false);
+    myDisplay.print(1234);
+    delay(1000);
   }
 }
