@@ -1,9 +1,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h> 
- 
+
 #define SS_PIN 21
 #define RST_PIN 22
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.ll
@@ -20,19 +18,15 @@ void setup()
 void loop() 
 {
   // Look for new cards
-  if ( ! mfrc522.PICC_IsNewCardPresent()) 
-  {
-    return;
-  }
-  // Select one of the cards
-  if ( ! mfrc522.PICC_ReadCardSerial()) 
+  if ( !mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()) 
   {
     return;
   }
   //Show UID on serial monitor
-  Serial.print("UID tag :");
+  
+  Serial.println("\t|-----------|------------------------|");
+  Serial.print("\t| UID tag : | ");
   String content = "";
-  byte letter;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
   {
      Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
@@ -40,17 +34,25 @@ void loop()
      content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
      content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
-  Serial.println();
-  Serial.print("Message : ");
+  
   content.toUpperCase();
-  if (content.substring(1) == "BD 31 15 2B") //change here the UID of the card/cards that you want to give access
+  if (content.substring(1) == "3A 43 6B 81")
   {
-    Serial.println("Authorized access");
-    delay(3000);
+    Serial.println("           |");
+    Serial.println("\t|-----------|------------------------|");
+    Serial.println("\t| Message : | Akses Di Terima        |");
+    Serial.println("\t|-----------|------------------------|");
+    Serial.println("\t| Name    : |                        |");
+    Serial.println("\t|-----------|------------------------|\n\n");
+    delay(1000);
   }
- 
- else   {
-    Serial.println(" Access denied");
-    delay(2000);
+ else{
+    Serial.println("           |");
+    Serial.println("\t|-----------|------------------------|");
+    Serial.println("\t| Message : | Akses Di Tolak         |");
+    Serial.println("\t|-----------|------------------------|");
+    Serial.println("\t| Name    : | ******                 |");
+    Serial.println("\t|-----------|------------------------|\n\n");
+    delay(1000);
   }
 }
