@@ -27,6 +27,7 @@ void playNote(char note, int duration) {
 }
 
 void setup() {
+  Serial.begin(115200);
   pinMode(speakerPin, OUTPUT);
 }
 
